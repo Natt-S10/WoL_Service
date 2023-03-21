@@ -4,7 +4,9 @@
   "description": "WoL Service for raspberry pi",
   "main": "wol_udp_server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon wol_udp_server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "nexe -i wol_udp_server.js -o wol_udp_server"
   },
   "author": "",
   "license": "ISC",

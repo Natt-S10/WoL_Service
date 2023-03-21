@@ -1,7 +1,7 @@
 var udp = require('dgram');
 var wol = require('wol');   
 
-const TARGET_MAC_ADDRESS = '00:11:22:33:44:55';
+const TARGET_MAC_ADDRESS = '50:EB:F6:B9:5C:D3';
 
 // --------------------creating a udp server --------------------
 
@@ -30,14 +30,14 @@ server.on('message', function (msg, info) {
     }
 
     //sending msg
-    server.send(msg, info.port, 'localhost', function (error) {
-        if (error) {
-            client.close();
-        } else {
-            console.log('Data sent !!!');
-        }
+    // server.send(msg, info.port, 'localhost', function (error) {
+    //     if (error) {
+    //         client.close();
+    //     } else {
+    //         console.log('Data sent !!!');
+    //     }
 
-    });
+    // });
 
 });
 
@@ -57,7 +57,7 @@ server.on('close', function () {
     console.log('Socket is closed !');
 });
 
-server.bind(2222);
+server.bind(2580);
 
 setTimeout(function () {
     server.close();
