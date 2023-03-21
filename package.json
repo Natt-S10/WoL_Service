@@ -1,0 +1,16 @@
+{
+  "name": "wol_service",
+  "version": "1.0.0",
+  "description": "WoL Service for raspberry pi",
+  "main": "wol_udp_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nexe": "^4.0.0-rc.2",
+    "nodemon": "^2.0.21",
+    "wol": "^1.0.7"
+  }
+}
