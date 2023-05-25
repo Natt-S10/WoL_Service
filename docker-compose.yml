@@ -1,0 +1,13 @@
+version: '1.0'
+services:
+  wol_service:
+    image: wol_udp4
+    build: ./Dockerfile
+    container_name: wol_service
+    environment:
+      - PORT=${port}
+      - TARGET_MAC_ADDRESS = ${targets}
+    ports:
+      - ${port}:${port}
+    restart: always
+  
