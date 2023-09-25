@@ -1,0 +1,11 @@
+[Unit]
+Description=wol Application
+
+[Service]
+ExecStart=/usr/bin/node /srv/deploy/WoL_Service/server.js
+WorkingDirectory=/srv/deploy/WoL_Service/
+Restart=always
+User=natts
+
+[Install]
+WantedBy=multi-user.target

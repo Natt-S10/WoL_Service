@@ -1,0 +1,5 @@
+{
+    "targets": [
+        {"name": "a-computer", "target": "11:AA:22:BB:33:CC"}
+    ]
+}

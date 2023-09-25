@@ -1,0 +1,59 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your main branch name
+  pull_request:
+    branches:
+      - main  # Adjust to your main branch name
+
+jobs:
+  build:
+
+    runs-on: aspire
+
+    env:
+      WOL_PORT: ${{ secrets.WOL_PORT }}  # Set WOL_PORT to the preset value from GitHub secrets
+
+    steps:
+    - name: Set WOL_PORT on host machine
+      run: echo "export WOL_PORT=${{ secrets.WOL_PORT }}" >> $HOME/.bashrc
+      if: secrets.WOL_PORT != ''
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'  # Adjust to your Node.js version
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build and test
+      run: npm test  # Replace with your build and test command
+
+    - name: Deploy
+      run: |
+        # Clone the repository on the target machine (GitHub Actions runner)
+        cd /srv/deploy
+        git clone https://github.com/Natt-S10/WoL_Service
+        
+        # Change to your app's directory
+        cd WoL_Service
+
+        # Copy the service file to the appropriate location
+        cp wol.service /etc/systemd/system/  # Replace with the actual path
+
+        # Reload systemd to pick up the new service file
+        systemctl daemon-reload
+
+        # Enable and start the service
+        systemctl enable wol.service
+        systemctl start wol.service
+
+
+
+
